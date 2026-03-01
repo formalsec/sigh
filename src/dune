@@ -1,2 +1,3 @@
 (library
- (name sigh))
+ (name sigh)
+ (libraries lwt lwt.unix))

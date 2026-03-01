@@ -19,7 +19,12 @@
  (name sigh)
  (synopsis "A short synopsis")
  (description "A longer description")
- (depends ocaml)
+ (depends
+  cmdliner
+  ocaml
+  lwt
+  (ocamlformat :with-dev-setup)
+  (ocaml-lsp-server :with-dev-setup))
  (tags
   ("add topics" "to describe" your project)))
 
