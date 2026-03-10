@@ -23,9 +23,9 @@ let returncode =
   match Cmdliner.Cmd.eval_value commands with
   | Ok (`Help | `Version | `Ok ()) -> Cmdliner.Cmd.Exit.ok
   | Error e -> (
-      match e with
-      | `Term -> Cmdliner.Cmd.Exit.some_error
-      | `Parse -> Cmdliner.Cmd.Exit.cli_error
-      | `Exn -> Cmdliner.Cmd.Exit.internal_error)
+    match e with
+    | `Term -> Cmdliner.Cmd.Exit.some_error
+    | `Parse -> Cmdliner.Cmd.Exit.cli_error
+    | `Exn -> Cmdliner.Cmd.Exit.internal_error )
 
 let () = exit returncode
