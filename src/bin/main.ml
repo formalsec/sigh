@@ -10,8 +10,23 @@ let commands =
       let+ url =
         let doc = "The webhook URL to send the notification to." in
         Arg.(required & pos 0 (some string) None & info [] ~docv:"URL" ~doc)
+      and+ markdown =
+        let doc = "The markdown content of the notification." in
+        Arg.(value & pos 1 (some string) None & info [] ~docv:"MARKDOWN" ~doc)
       in
-      Sigh.Notify.run url
+      let markdown =
+        match markdown with
+        | Some md -> md
+        | None ->
+          let rec read_stdin acc =
+            try
+              let line = input_line stdin in
+              read_stdin (acc ^ line ^ "\n")
+            with End_of_file -> acc
+          in
+          read_stdin ""
+      in
+      Sigh.Notify.run url markdown
     in
     Cmd.v info term
   in

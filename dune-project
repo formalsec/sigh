@@ -20,9 +20,12 @@
  (synopsis "A short synopsis")
  (description "A longer description")
  (depends
+  cohttp
+  cohttp-lwt-unix
   cmdliner
   ocaml
   lwt
+  yojson
   (ocamlformat :with-dev-setup)
   (ocaml-lsp-server :with-dev-setup))
  (tags
